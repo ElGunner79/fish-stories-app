@@ -4,7 +4,6 @@ import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider, createTheme, responsiveFontSizes } from "@mui/material/styles";
 import { getInitialTheme } from "./utils/theme";
 import App from './App.jsx'
-import './index.css'
 
 import "@fontsource/roboto/300.css";
 import "@fontsource/roboto/400.css";

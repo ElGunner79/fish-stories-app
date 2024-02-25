@@ -15,7 +15,7 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { NavLink } from "react-router-dom";
 
-const drawerWidth = 200;
+const drawerWidth = 150;
 const navItems = [
   { label: "Videos", path: "/videos" },
   { label: "Playback", path: "/playback" },
@@ -33,9 +33,12 @@ function Header(props) {
     setMobileOpen((prevState) => !prevState);
   };
 
+  const container =
+    window !== undefined ? () => window().document.body : undefined;
+
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
-      <Typography variant="h6" sx={{ my: 2 }}>
+      <Typography variant="h6" sx={{ my: 2, color: "#fff" }}>
         FISHSTORIES
       </Typography>
       <Divider />
@@ -43,8 +46,11 @@ function Header(props) {
         {navItems.map((item) => (
           <ListItem key={item.label} disablePadding>
             <ListItemButton sx={{ textAlign: "center" }}>
-              <NavLink to={item.path} style={{ textDecoration: "none" }}>
-                <ListItemText primary={item.label} />
+              <NavLink
+                to={item.path}
+                style={{ textDecoration: "none", color: "#fff" }}
+              >
+                <ListItemText primary={<Typography sx={{ color: "#fff", fontSize: "14px" }}>{item.label}</Typography>} />
               </NavLink>
             </ListItemButton>
           </ListItem>
@@ -52,9 +58,6 @@ function Header(props) {
       </List>
     </Box>
   );
-
-  const container =
-    window !== undefined ? () => window().document.body : undefined;
 
   return (
     <Box sx={{ display: "flex" }}>
@@ -72,9 +75,9 @@ function Header(props) {
           </IconButton>
           <Box sx={{ display: { xs: "none", sm: "block" } }}>
             {navItems.map((item) => (
-              <Button key={item.label} sx={{ color: "#fff" }}>
-                <NavLink to={item.path} style={{ textDecoration: "none" }}>
-                  {item.label}
+              <Button key={item.label} sx={{ color: "#fff", fontSize: "13.3px" }}>
+                <NavLink to={item.path} style={{ textDecoration: "none", color: "#fff" }}>
+                  <Typography sx={{ color: "#fff", fontSize: "13.3px" }}>{item.label}</Typography>
                 </NavLink>
               </Button>
             ))}

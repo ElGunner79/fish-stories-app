@@ -13,9 +13,17 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
+import { NavLink } from "react-router-dom";
 
-const drawerWidth = 180;
-const navItems = ["Log In", "Sign Up", "Videos", "Playback", "Catch Map", "Video Upload", "Add Location"];
+const drawerWidth = 200;
+const navItems = [
+  { label: "Videos", path: "/videos" },
+  { label: "Playback", path: "/playback" },
+  { label: "Catch Map", path: "/catchmap" },
+  { label: "Video Upload", path: "/upload" },
+  { label: "Add Location", path: "/addlocation" },
+  { label: "Log Out", path: "/" },
+];
 
 function Header(props) {
   const { window } = props;
@@ -28,14 +36,16 @@ function Header(props) {
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
       <Typography variant="h6" sx={{ my: 2 }}>
-        MUI
+        FISHSTORIES
       </Typography>
       <Divider />
       <List>
         {navItems.map((item) => (
-          <ListItem key={item} disablePadding>
+          <ListItem key={item.label} disablePadding>
             <ListItemButton sx={{ textAlign: "center" }}>
-              <ListItemText primary={item} />
+              <NavLink to={item.path} style={{ textDecoration: "none" }}>
+                <ListItemText primary={item.label} />
+              </NavLink>
             </ListItemButton>
           </ListItem>
         ))}
@@ -60,17 +70,12 @@ function Header(props) {
           >
             <MenuIcon />
           </IconButton>
-          <Typography
-            variant="h6"
-            component="div"
-            sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
-          >
-            MUI
-          </Typography>
           <Box sx={{ display: { xs: "none", sm: "block" } }}>
             {navItems.map((item) => (
-              <Button key={item} sx={{ color: "#fff" }}>
-                {item}
+              <Button key={item.label} sx={{ color: "#fff" }}>
+                <NavLink to={item.path} style={{ textDecoration: "none" }}>
+                  {item.label}
+                </NavLink>
               </Button>
             ))}
           </Box>

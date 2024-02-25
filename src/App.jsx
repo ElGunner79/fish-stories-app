@@ -2,6 +2,7 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
+import Layout from "./layouts";
 
 const router = createBrowserRouter([
   {

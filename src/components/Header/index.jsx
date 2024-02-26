@@ -1,111 +1,56 @@
-import * as React from "react";
 import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import CssBaseline from "@mui/material/CssBaseline";
-import Divider from "@mui/material/Divider";
-import Drawer from "@mui/material/Drawer";
-import IconButton from "@mui/material/IconButton";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemText from "@mui/material/ListItemText";
-import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
+import Logo from '../../images/fishstories-logo-white.svg'
+import { styled } from '@mui/material/styles';
+import { Link as RouterLink, NavLink, Link } from "react-router-dom";
 import Button from "@mui/material/Button";
-import { NavLink } from "react-router-dom";
 
-const drawerWidth = 150;
-const navItems = [
-  { label: "Videos", path: "/videos" },
-  { label: "Playback", path: "/playback" },
-  { label: "Catch Map", path: "/catchmap" },
-  { label: "Video Upload", path: "/upload" },
-  { label: "Add Location", path: "/addlocation" },
-  { label: "Log Out", path: "/" },
-];
+const LogoLink = styled(Link)({
+  display: "flex",
+  alignItems: "center",
+  textDecoration: "none",
+  color: "inherit",
+  flexGrow: 1,
+});
 
-function Header(props) {
-  const { window } = props;
-  const [mobileOpen, setMobileOpen] = React.useState(false);
+const LogoImg = styled('img')(() => ({
+  width: 150,
+  height: 80,
+  marginTop: 5,
+  marginBottom: 5,
+  marginLeft: 'auto',
+  marginRight: 10,
 
-  const handleDrawerToggle = () => {
-    setMobileOpen((prevState) => !prevState);
-  };
+  '@media (max-width:640px)': {
+    width: 120,
+    height: 50
+  }
+}));
 
-  const container =
-    window !== undefined ? () => window().document.body : undefined;
+const HeaderLink = styled(Button)(({ theme }) => ({
+  marginLeft: theme.spacing(1),
+  textDecoration: 'none',
+  color: 'inherit'
+}));
 
-  const drawer = (
-    <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
-      <Typography variant="h6" sx={{ my: 2, color: "#fff" }}>
-        FISHSTORIES
-      </Typography>
-      <Divider />
-      <List>
-        {navItems.map((item) => (
-          <ListItem key={item.label} disablePadding>
-            <ListItemButton sx={{ textAlign: "center" }}>
-              <NavLink
-                to={item.path}
-                style={{ textDecoration: "none", color: "#fff" }}
-              >
-                <ListItemText primary={<Typography sx={{ color: "#fff", fontSize: "14px" }}>{item.label}</Typography>} />
-              </NavLink>
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-    </Box>
-  );
-
+const Header = () => {
   return (
-    <Box sx={{ display: "flex" }}>
-      <CssBaseline />
-      <AppBar component="nav">
-        <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            edge="start"
-            onClick={handleDrawerToggle}
-            sx={{ mr: 2, display: { sm: "none" } }}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Box sx={{ display: { xs: "none", sm: "block" } }}>
-            {navItems.map((item) => (
-              <Button key={item.label} sx={{ color: "#fff", fontSize: "13.3px" }}>
-                <NavLink to={item.path} style={{ textDecoration: "none", color: "#fff" }}>
-                  <Typography sx={{ color: "#fff", fontSize: "13.3px" }}>{item.label}</Typography>
-                </NavLink>
-              </Button>
-            ))}
-          </Box>
-        </Toolbar>
-      </AppBar>
-      <nav>
-        <Drawer
-          container={container}
-          variant="temporary"
-          open={mobileOpen}
-          onClose={handleDrawerToggle}
-          ModalProps={{
-            keepMounted: true, // Better open performance on mobile.
-          }}
-          sx={{
-            display: { xs: "block", sm: "none" },
-            "& .MuiDrawer-paper": {
-              boxSizing: "border-box",
-              width: drawerWidth,
-            },
-          }}
-        >
-          {drawer}
-        </Drawer>
-      </nav>
-    </Box>
+    <AppBar position="static">
+      <Toolbar>
+        <nav>
+          <HeaderLink component={NavLink} to="/videos" sx={{flexGrow: 1}}>VIDEOS</HeaderLink>
+          <HeaderLink component={NavLink} to="/playback" sx={{flexGrow: 1}}>WATCHING</HeaderLink>
+          <HeaderLink component={NavLink} to="/catchmap" sx={{flexGrow: 1}}>CATCH MAP</HeaderLink>
+          <HeaderLink component={NavLink} to="/upload" sx={{flexGrow: 1}}>UPLOAD VIDEO</HeaderLink>
+          <HeaderLink component={NavLink} to="/addlocation" sx={{flexGrow: 1}}>ADD LOCATION</HeaderLink>
+          <HeaderLink component={NavLink} to="/" sx={{flexGrow: 1}}>LOG OUT</HeaderLink>
+        </nav>
+         <LogoLink component={RouterLink} to="/videos">
+          <LogoImg src={Logo} alt="Fishstories white logo" /> {/* Updated position */}
+        </LogoLink>
+      </Toolbar>
+    </AppBar>
   );
-}
+};
 
 export default Header;

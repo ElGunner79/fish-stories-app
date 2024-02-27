@@ -8,7 +8,6 @@ import Checkbox from "@mui/material/Checkbox";
 import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
-// import Typography from "@mui/material/Typography";
 import Logo from "../../images/fishstories-logo-color.svg";
 import Container from "@mui/material/Container";
 import { styled } from "@mui/material/styles";

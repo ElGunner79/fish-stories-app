@@ -12,11 +12,11 @@ import Upload from "./pages/Upload";
 import Addlocation from "./pages/Addlocation";
 
 const router = createBrowserRouter([
+  { path: "/", element: <Login />},
   {
     path: "/",
     element: <Layout />,
     children: [
-      { path: "/", element: <Login /> },
       { path: "/signup", element: <Signup /> },
       { path: "/videos", element: <Videos /> },
       { path: "/playback", element: <Playback /> },

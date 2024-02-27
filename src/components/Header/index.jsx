@@ -16,6 +16,7 @@ import Logo from "../../images/fishstories-logo-white.svg";
 import { styled } from "@mui/material/styles";
 import { Link as RouterLink, NavLink, Link } from "react-router-dom";
 import Button from "@mui/material/Button";
+import ThemeSwitch from "../ThemeSwitch";
 
 const drawerWidth = 150;
 
@@ -175,6 +176,7 @@ function DrawerAppBar(props) {
               </HeaderLink>
             </nav>
           </Box>
+          <ThemeSwitch />
           <LogoLink component={RouterLink} to="/videos">
             <LogoImg src={Logo} alt="Fishstories white logo" />
           </LogoLink>

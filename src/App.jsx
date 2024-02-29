@@ -1,7 +1,4 @@
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Layout from "./layouts";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
@@ -12,7 +9,7 @@ import Upload from "./pages/Upload";
 import Addlocation from "./pages/Addlocation";
 
 const router = createBrowserRouter([
-  { path: "/", element: <Login />},
+  { path: "/", element: <Login /> },
   {
     path: "/",
     element: <Layout />,

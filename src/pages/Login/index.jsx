@@ -1,17 +1,19 @@
-
 import * as React from "react";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
-import Link from "@mui/material/Link";
+// import Link from "@mui/material/Link";
+import { Link } from "react-router-dom";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Logo from "../../images/fishstories-logo-color.svg";
 import Container from "@mui/material/Container";
 import { styled } from "@mui/material/styles";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import Footer from "../../components/Footer";
+import LoginVideo from "../../components/LoginVideo";
 
 const defaultTheme = createTheme();
 
@@ -48,9 +50,13 @@ export default function SignIn() {
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
+            height: "100",
+            
           }}
         >
           <LogoImg src={Logo} alt="Fishstories color logo" />
+          &nbsp;{/* Non-breaking space */}
+          <LoginVideo />
           <Box
             component="form"
             onSubmit={handleSubmit}
@@ -88,17 +94,29 @@ export default function SignIn() {
                     type="submit"
                     fullWidth
                     variant="contained"
-                    sx={{ mt: 3, mb: 2 }}
+                    sx={{
+                      mt: 3,
+                      mb: 2,
+                      backgroundColor: "grey",
+                      borderColor: "#57D5CE",
+                      borderWidth: 1,
+                    }}
                   >
                     LOG IN
                   </Button>
                 </Grid>
                 <Grid item>
                   <Button
-                    type="submit"
+                    component={Link}
+                    to="/signup"
                     fullWidth
                     variant="contained"
-                    sx={{ mt: 3, mb: 2 }}
+                    sx={{
+                      mt: 3,
+                      mb: 2,
+                      backgroundColor: "grey",
+                      borderColor: "#57D5CE",
+                    }}
                   >
                     SIGN UP
                   </Button>
@@ -108,6 +126,7 @@ export default function SignIn() {
           </Box>
         </Box>
       </Container>
+      <Footer />
     </ThemeProvider>
   );
 }

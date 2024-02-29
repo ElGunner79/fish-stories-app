@@ -25,12 +25,21 @@ const LogoLink = styled(Link)({
   alignItems: "center",
   textDecoration: "none",
   color: "inherit",
-  flexGrow: 1,
+  // flexGrow: 1,
+  width: 160,
+  height: 90,
+  marginTop: 5,
+  marginBottom: 5,
+  marginLeft: "auto",
+  "@media (max-width:640px)": {
+    width: 130,
+    height: 60,
+  },
 });
 
 const LogoImg = styled("img")(() => ({
-  width: 140,
-  height: 70,
+  width: 160,
+  height: 90,
   marginTop: 5,
   marginBottom: 5,
   marginLeft: "auto",
@@ -48,7 +57,7 @@ const HeaderLink = styled(Button)(({ theme }) => ({
   color: "inherit",
   opacity: 1, // BEGIN: Added opacity property
   "&:not(.active)": {
-    opacity: 0.50, // BEGIN: Set opacity for unselected links
+    opacity: 0.7, // BEGIN: Set opacity for unselected links
   },
 }));
 
@@ -131,7 +140,7 @@ function DrawerAppBar(props) {
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
-      <AppBar component="nav">
+      <AppBar component="nav" sx={{ backgroundColor: "transparent" }} elevation={0}>
         <Toolbar>
           <IconButton
             color="inherit"

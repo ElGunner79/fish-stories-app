@@ -14,14 +14,14 @@ services:
     expose:
       # Opens port 3306 on the container
       - "3306"
-    container_name: fishdb
+    container_name: mysqldb
 
   app:
     image: elgunner79/fish-stories:latest
     restart: always
     environment:
       PORT: 3001
-      DB_HOST: 'fishdb'
+      DB_HOST: 'mysqldb'
       DB_USER: 'root'
       DB_PASS: 'pa55word'
       DB_NAME: 'fish-stories-db'

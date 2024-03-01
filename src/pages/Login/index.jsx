@@ -14,6 +14,10 @@ import { styled } from "@mui/material/styles";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Footer from "../../components/Footer";
 import LoginVideo from "../../components/LoginVideo";
+import { useAuth, login } from "../../features/AuthManager/AuthContext";
+import Loader from "../../components/Loader";
+import Alert from "@mui/material/Alert";
+import { Navigate } from "react-router-dom";
 
 const defaultTheme = createTheme();
 
@@ -31,19 +35,31 @@ const LogoImg = styled("img")(() => ({
 }));
 
 export default function SignIn() {
-  const handleSubmit = (event) => {
+  const {
+    state: { isAuthenticated, loading, error },
+    dispatch,
+  } = useAuth().value;
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     console.log({
       email: data.get("email"),
       password: data.get("password"),
     });
+    const user = {
+      email: data.get("email"),
+      password: data.get("password"),
+    };
+    console.log(user);
+    await login(dispatch, user.email, user.password);
   };
 
   return (
     <ThemeProvider theme={defaultTheme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
+        {loading ? <Loader /> : null}
         <Box
           sx={{
             marginTop: 8,
@@ -123,10 +139,12 @@ export default function SignIn() {
                 </Grid>
               </Grid>
             </Grid>
+            {error && <Alert severity="error">{error}</Alert>}
           </Box>
         </Box>
       </Container>
       <Footer />
+      {isAuthenticated && <Navigate to="/videos" />}
     </ThemeProvider>
   );
 }

@@ -60,7 +60,10 @@ const createUser = async (dispatch, user) => {
   try {
     const response = await fetch(`${import.meta.env.VITE_API_URL}/users`, {
       method: "POST",
-      body: user,
+      body: JSON.stringify(user),
+      headers: {
+        "Content-Type": "application/json",
+      },
     });
     const data = await response.json();
     if (data.result === 200) {

@@ -17,6 +17,8 @@ import { styled } from "@mui/material/styles";
 import { Link as RouterLink, NavLink, Link } from "react-router-dom";
 import Button from "@mui/material/Button";
 import ThemeSwitch from "../ThemeSwitch";
+import { useNavigate } from "react-router-dom";
+import { useAuth, logout } from "../../features/AuthManager/AuthContext";
 
 const drawerWidth = 150;
 
@@ -64,9 +66,16 @@ const HeaderLink = styled(Button)(({ theme }) => ({
 function DrawerAppBar(props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
+  const navigate = useNavigate();
+  const { authState, dispatch } = useAuth().value;
 
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
+  };
+
+  const handleLogout = () => {
+    logout(dispatch);
+    navigate("/");
   };
 
   const drawer = (
@@ -140,7 +149,11 @@ function DrawerAppBar(props) {
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
-      <AppBar component="nav" sx={{ backgroundColor: "transparent" }} elevation={0}>
+      <AppBar
+        component="nav"
+        sx={{ backgroundColor: "transparent" }}
+        elevation={0}
+      >
         <Toolbar>
           <IconButton
             color="inherit"
@@ -180,9 +193,8 @@ function DrawerAppBar(props) {
               >
                 ADD LOCATION
               </HeaderLink>
-              <HeaderLink component={NavLink} to="/" sx={{ flexGrow: 1 }}>
-                LOG OUT
-              </HeaderLink>
+              <Button onClick={handleLogout}
+              >LOG OUT</Button>
             </nav>
           </Box>
           <ThemeSwitch />

@@ -1,16 +1,47 @@
-import React, { useState } from 'react';
-import { Container, TextField, Button, Typography, Box } from '@mui/material';
-import DragAndDropUpload from '../../components/DragAndDropUpload';
+import React, { useState } from "react";
+import { Container, TextField, Button, Typography, Box } from "@mui/material";
+import DragAndDropUpload from "../../components/DragAndDropUpload";
+import { useNavigate } from "react-router-dom";
+// import the navigate here 1 line of code
 
 const Upload = () => {
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [location, setLocation] = useState("");
   const [uploadedFile, setUploadedFile] = useState(null);
+  const navigate = useNavigate();
+  // get the navigate function from the hook here 1 line of code
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
+    console.log("ok im calling the service wish me luck..");
     e.preventDefault();
-    // Handle form submission, e.g., send data to server
-    console.log('Form Submitted:', { title, description, uploadedFile });
+
+    try {
+      const formData = new FormData();
+      formData.append("userId", 1);
+      formData.append("videoTitle", title);
+      formData.append("videoDesc", description);
+      formData.append("location", location);
+      formData.append("video", uploadedFile);
+
+      const response = await fetch("http://localhost:3001/api/videos", {
+        method: "POST",
+        body: formData,
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        console.log("Video created:", data);
+        navigate("/videos");
+        // Redirect to the video page
+        // should be 1 line of code
+      } else {
+        console.error("Failed to create video:", data);
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
   };
 
   return (
@@ -47,7 +78,7 @@ const Upload = () => {
           <TextField
             fullWidth
             label="Location"
-            value={title}
+            value={location}
             onChange={(e) => setLocation(e.target.value)}
             margin="normal"
             required

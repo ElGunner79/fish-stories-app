@@ -3,20 +3,22 @@ import { styled } from "@mui/material/styles";
 import { Outlet } from "react-router-dom";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import GridItem from "../components/GridItem";
 
 const Root = styled("div")(({ theme }) => ({
   display: "flex",
   flexDirection: "column",
   minHeight: "100vh",
-  backgroundColor: theme.palette.background.default,
+  backgroundImage: `linear-gradient(to bottom, #57D5CE, #10C9D4, #19A8C8)`,
   color: theme.palette.text.primary,
 }));
+
 
 const Main = styled("main")(() => ({
   flex: 1,
   display: "flex",
   flexDirection: "column",
-  }));
+}));
 
 const Layout = () => {
   return (
@@ -25,7 +27,9 @@ const Layout = () => {
       <Main>
         <Grid container spacing={2}>
           <Grid item xs={12}>
-            <Outlet />
+            <GridItem>
+              <Outlet />
+            </GridItem>
           </Grid>
         </Grid>
       </Main>

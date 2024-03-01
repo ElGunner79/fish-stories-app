@@ -12,7 +12,7 @@ const LoginVideo = () => {
           src={loginVideo}
           autoPlay
           loop
-          //controls // Add the controls attribute
+          controls // Add the controls attribute
         />
       </Card>
     );

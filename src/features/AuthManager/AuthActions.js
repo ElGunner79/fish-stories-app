@@ -29,6 +29,8 @@ const login = async (dispatch, email, password) => {
 }
 
 const logout = (dispatch) => {
+    console.log("log out function is running");
+    console.log(dispatch);
     dispatch({ type: "LOGOUT" });
 }
 

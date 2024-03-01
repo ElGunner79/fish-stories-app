@@ -151,7 +151,9 @@ function DrawerAppBar(props) {
       <CssBaseline />
       <AppBar
         component="nav"
-        sx={{ backgroundColor: "transparent" }}
+        sx={{
+          backgroundImage: `linear-gradient(to bottom, #57D5CE, #57D5CE)`,
+        }}
         elevation={0}
       >
         <Toolbar>
@@ -193,8 +195,7 @@ function DrawerAppBar(props) {
               >
                 ADD LOCATION
               </HeaderLink>
-              <Button onClick={handleLogout}
-              >LOG OUT</Button>
+              <Button onClick={handleLogout}>LOG OUT</Button>
             </nav>
           </Box>
           <ThemeSwitch />

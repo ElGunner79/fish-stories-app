@@ -23,11 +23,7 @@ const Upload = () => {
           marginTop: 8,
         }}
       >
-        <Typography
-          component="h1"
-          variant="h5"
-          style={{ color: "white" }}
-        >
+        <Typography component="h1" variant="h5" style={{ color: "white" }}>
           UPLOAD VIDEO
         </Typography>
         <Box component="form" onSubmit={handleSubmit} sx={{ mt: 3 }}>
@@ -42,9 +38,17 @@ const Upload = () => {
           <TextField
             fullWidth
             multiline
-            label="Short Description"
+            label="Video Description"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
+            margin="normal"
+            required
+          />
+          <TextField
+            fullWidth
+            label="Location"
+            value={title}
+            onChange={(e) => setLocation(e.target.value)}
             margin="normal"
             required
           />

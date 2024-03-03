@@ -10,11 +10,12 @@ import Addlocation from "./pages/Addlocation";
 
 const router = createBrowserRouter([
   { path: "/", element: <Login /> },
+  { path: "/signup", element: <Signup /> },
   {
     path: "/",
     element: <Layout />,
     children: [
-      { path: "/signup", element: <Signup /> },
+      // { path: "/signup", element: <Signup /> },
       { path: "/videos", element: <Videos /> },
       { path: "/playback", element: <Playback /> },
       { path: "/catchmap", element: <Catchmap /> },

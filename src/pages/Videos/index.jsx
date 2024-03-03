@@ -21,7 +21,7 @@ const Videos = () => {
 
   return (
     <ThemeProvider theme={defaultTheme}>
-      <Container component="main" maxWidth="xs">
+      <Container component="main" maxWidth="md">
         <CssBaseline />
         <Typography
           component="h1"
@@ -31,7 +31,12 @@ const Videos = () => {
           VIDEOS
         </Typography>
         <Box sx={{ mt: 3 }}>
-          <Grid container spacing={2}>
+          <Grid
+            container
+            spacing={2}
+            justifyContent="center"
+            alignItems="center"
+          >
             {videos.map((video) => (
               <Grid
                 item
@@ -41,9 +46,8 @@ const Videos = () => {
                 md={12}
                 style={{ marginBottom: 16 }}
               >
-                <Card>
+                <Card sx={{ width: "100%", maxWidth: 800 }}>
                   <CardMedia
-                    fullWidth
                     component="video"
                     src={`http://localhost:3001/uploads/${video.filename}`}
                     title={video.videoTitle}

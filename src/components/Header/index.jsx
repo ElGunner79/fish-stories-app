@@ -63,6 +63,15 @@ const HeaderLink = styled(Button)(({ theme }) => ({
   },
 }));
 
+const LogoutButton = styled(Button)({
+  textDecoration: "none",
+  color: "inherit",
+  opacity: 1, // BEGIN: Added opacity property
+  "&:not(.active)": {
+    opacity: 0.7, // BEGIN: Set opacity for unselected links
+  },
+});
+
 function DrawerAppBar(props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
@@ -195,7 +204,7 @@ function DrawerAppBar(props) {
               >
                 ADD LOCATION
               </HeaderLink>
-              <Button onClick={handleLogout}>LOG OUT</Button>
+              <LogoutButton onClick={handleLogout}>LOG OUT</LogoutButton>
             </nav>
           </Box>
           <ThemeSwitch />

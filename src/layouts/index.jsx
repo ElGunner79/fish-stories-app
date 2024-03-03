@@ -9,7 +9,7 @@ const Root = styled("div")(({ theme }) => ({
   display: "flex",
   flexDirection: "column",
   minHeight: "100vh",
-  backgroundImage: `linear-gradient(to bottom, #57D5CE, #10C9D4, #19A8C8)`,
+  backgroundImage: `linear-gradient(to bottom, #57D5CE, #57D5CE, #19A8C8)`,
   color: theme.palette.text.primary,
 }));
 

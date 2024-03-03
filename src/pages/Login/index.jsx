@@ -4,11 +4,10 @@ import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
-// import Link from "@mui/material/Link";
 import { Link } from "react-router-dom";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
-import Logo from "../../images/fishstories-logo-color.svg";
+import Logo from "../../images/fishstories-logo-white.svg";
 import Container from "@mui/material/Container";
 import { styled } from "@mui/material/styles";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
@@ -24,15 +23,25 @@ const defaultTheme = createTheme();
 const LogoImg = styled("img")(() => ({
   width: 396,
   height: 198,
-  marginTop: 10,
+  marginTop: 0, // No margin above the logo
   marginBottom: 10,
   margin: "auto",
-
   "@media (max-width:640px)": {
     width: "auto",
     height: "auto",
   },
 }));
+
+const SignInContainer = styled(Box)(({ theme }) => ({
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "center",
+  alignItems: "center",
+  height: "100vh", // Set height to 100% of viewport height
+  background: `linear-gradient(to bottom, #57D5CE, #57D5CE, #19A8C8)`,
+  overflowY: "auto", // Display vertical scrollbar if content exceeds viewport height
+}));
+
 
 export default function SignIn() {
   const {
@@ -43,36 +52,23 @@ export default function SignIn() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
     const user = {
       email: data.get("email"),
       password: data.get("password"),
     };
-    console.log(user);
     await login(dispatch, user.email, user.password);
   };
 
   return (
     <ThemeProvider theme={defaultTheme}>
-      <Container component="main" maxWidth="xs">
-        <CssBaseline />
-        {loading ? <Loader /> : null}
-        <Box
-          sx={{
-            marginTop: 8,
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            height: "100",
-            
-          }}
-        >
+      <CssBaseline />
+      <SignInContainer>
+        <Container component="main" maxWidth="xs" sx={{ marginTop: 20 }}>
+          {loading ? <Loader /> : null}
           <LogoImg src={Logo} alt="Fishstories color logo" />
-          &nbsp;{/* Non-breaking space */}
+          &nbsp;
           <LoginVideo />
+          &nbsp;
           <Box
             component="form"
             onSubmit={handleSubmit}
@@ -103,48 +99,46 @@ export default function SignIn() {
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
             />
-            <Grid container>
-              <Grid container justifyContent="space-between">
-                <Grid item>
-                  <Button
-                    type="submit"
-                    fullWidth
-                    variant="contained"
-                    sx={{
-                      mt: 3,
-                      mb: 2,
-                      backgroundColor: "grey",
-                      borderColor: "#57D5CE",
-                      borderWidth: 1,
-                    }}
-                  >
-                    LOG IN
-                  </Button>
-                </Grid>
-                <Grid item>
-                  <Button
-                    component={Link}
-                    to="/signup"
-                    fullWidth
-                    variant="contained"
-                    sx={{
-                      mt: 3,
-                      mb: 2,
-                      backgroundColor: "grey",
-                      borderColor: "#57D5CE",
-                    }}
-                  >
-                    SIGN UP
-                  </Button>
-                </Grid>
+            <Grid container justifyContent="space-between">
+              <Grid item>
+                <Button
+                  type="submit"
+                  fullWidth
+                  variant="contained"
+                  sx={{
+                    mt: 3,
+                    mb: 2,
+                    backgroundColor: "grey",
+                    borderColor: "#57D5CE",
+                    borderWidth: 1,
+                  }}
+                >
+                  LOG IN
+                </Button>
+              </Grid>
+              <Grid item>
+                <Button
+                  component={Link}
+                  to="/signup"
+                  fullWidth
+                  variant="contained"
+                  sx={{
+                    mt: 3,
+                    mb: 2,
+                    backgroundColor: "grey",
+                    borderColor: "#57D5CE",
+                  }}
+                >
+                  SIGN UP
+                </Button>
               </Grid>
             </Grid>
             {error && <Alert severity="error">{error}</Alert>}
           </Box>
-        </Box>
-      </Container>
-      <Footer />
-      {isAuthenticated && <Navigate to="/videos" />}
+        </Container>
+        <Footer />
+        {isAuthenticated && <Navigate to="/videos" />}
+      </SignInContainer>
     </ThemeProvider>
   );
 }

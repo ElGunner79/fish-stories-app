@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Container, TextField, Button, Typography, Box } from "@mui/material";
 import DragAndDropUpload from "../../components/DragAndDropUpload";
 import { useNavigate } from "react-router-dom";
-// import the navigate here 1 line of code
+
 
 const Upload = () => {
   const [title, setTitle] = useState("");
@@ -10,7 +10,7 @@ const Upload = () => {
   const [location, setLocation] = useState("");
   const [uploadedFile, setUploadedFile] = useState(null);
   const navigate = useNavigate();
-  // get the navigate function from the hook here 1 line of code
+
 
   const handleSubmit = async (e) => {
     console.log("ok im calling the service wish me luck..");
@@ -34,8 +34,6 @@ const Upload = () => {
       if (response.ok) {
         console.log("Video created:", data);
         navigate("/videos");
-        // Redirect to the video page
-        // should be 1 line of code
       } else {
         console.error("Failed to create video:", data);
       }

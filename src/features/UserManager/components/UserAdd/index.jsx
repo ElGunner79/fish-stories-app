@@ -18,7 +18,6 @@ const UserAdd = () => {
     const surname = event.target.surname.value;
     const email = event.target.email.value;
     const password = event.target.password.value;
-    // const avatar = event.target.avatar.files[0];
 
     // create form data
     const formData = new FormData();
@@ -26,7 +25,6 @@ const UserAdd = () => {
     formData.append("surname", surname);
     formData.append("email", email);
     formData.append("password", password);
-    // formData.append("avatar", avatar);
 
     await createUser(dispatch, formData);
   };
@@ -75,14 +73,6 @@ const UserAdd = () => {
         placeholder="Password"
         margin="normal"
       />
-      {/* <TextField
-        fullWidth
-        id="avatar"
-        name="avatar"
-        type="file"
-        margin="normal"
-        placeholder="Please upload your avatar"
-      /> */}
       <Button type="submit" variant="outlined">
         SIGN UP
       </Button>

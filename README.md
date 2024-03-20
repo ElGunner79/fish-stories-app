@@ -1,7 +1,7 @@
 # FISHSTORIES APP
 
 ## Overview
-FISHSTORIES APP is a video sharing application, for fishing enthusiasts looking for a "quick fix" of their favoruite past-time when they aren't able to go fishing. It is built with React and Vite for quick development, Node.js, Express and MySQL for the backend and database. It also utilizes Docker containers for easy deployment. This README file serves as a guide for setting up the development environment and running the Docker containers.
+FISHSTORIES APP is a video sharing application for fishing enthusiasts looking for a "quick fix" of their favoruite past-time when they aren't able to go fishing. It is built with React and Vite for quick development, Node.js, Express and MySQL for the backend and database. It also utilizes Docker containers for easy deployment. This README file serves as a guide for setting up the development environment and running the Docker containers.
 
 ## Development Environment Setup
 1. **Clone the Repository**:
